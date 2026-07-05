@@ -1,0 +1,685 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>שלמה | מאמן כושר אישי</title>
+<meta name="description" content="שלמה - מאמן כושר אישי. אימונים אישיים, אימוני קבוצה, ליווי תזונתי ואימונים אונליין.">
+<style>
+  :root{
+    --bg:#0b0b0d;
+    --bg-soft:#141417;
+    --card:#1a1a1e;
+    --line:#2a2a2e;
+    --text:#f4f4f2;
+    --muted:#a6a6ad;
+    --accent:#d7ff3f;
+    --accent-2:#ff5722;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--bg);
+    color:var(--text);
+    font-family:"Segoe UI","Heebo",Arial,sans-serif;
+    line-height:1.6;
+    overflow-x:hidden;
+  }
+  a{color:inherit;text-decoration:none;}
+  ul{list-style:none;}
+  img{max-width:100%;display:block;}
+  .container{
+    width:100%;
+    max-width:1180px;
+    margin:0 auto;
+    padding:0 24px;
+  }
+  .btn{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    padding:14px 28px;
+    border-radius:999px;
+    font-weight:700;
+    font-size:15px;
+    border:2px solid transparent;
+    cursor:pointer;
+    transition:transform .15s ease, box-shadow .15s ease, background .15s ease;
+    white-space:nowrap;
+  }
+  .btn:hover{transform:translateY(-2px);}
+  .btn-primary{
+    background:var(--accent);
+    color:#0b0b0d;
+    box-shadow:0 6px 20px rgba(215,255,63,.25);
+  }
+  .btn-primary:hover{box-shadow:0 10px 26px rgba(215,255,63,.4);}
+  .btn-outline{
+    background:transparent;
+    color:var(--text);
+    border-color:var(--line);
+  }
+  .btn-outline:hover{border-color:var(--accent);}
+
+  /* Header */
+  header{
+    position:fixed;
+    top:0;left:0;right:0;
+    z-index:100;
+    backdrop-filter:blur(10px);
+    background:rgba(11,11,13,.75);
+    border-bottom:1px solid var(--line);
+  }
+  .nav{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    height:76px;
+  }
+  .logo{
+    font-size:22px;
+    font-weight:800;
+    letter-spacing:.5px;
+  }
+  .logo span{color:var(--accent);}
+  .nav-links{
+    display:flex;
+    gap:32px;
+    font-weight:600;
+    font-size:15px;
+  }
+  .nav-links a{
+    color:var(--muted);
+    transition:color .15s ease;
+    position:relative;
+  }
+  .nav-links a:hover{color:var(--text);}
+  .nav-cta{display:flex;align-items:center;gap:14px;}
+  .burger{
+    display:none;
+    flex-direction:column;
+    gap:5px;
+    cursor:pointer;
+    background:none;
+    border:none;
+  }
+  .burger span{width:26px;height:2px;background:var(--text);display:block;}
+
+  /* Hero */
+  .hero{
+    position:relative;
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    padding-top:76px;
+    background:
+      radial-gradient(circle at 85% 20%, rgba(215,255,63,.12), transparent 45%),
+      radial-gradient(circle at 15% 80%, rgba(255,87,34,.15), transparent 45%),
+      var(--bg);
+    overflow:hidden;
+  }
+  .hero::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    background-image:
+      linear-gradient(rgba(255,255,255,.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,.03) 1px, transparent 1px);
+    background-size:48px 48px;
+    mask-image:radial-gradient(circle at 60% 40%, black, transparent 70%);
+    pointer-events:none;
+  }
+  .hero-grid{
+    display:grid;
+    grid-template-columns:1.1fr .9fr;
+    gap:40px;
+    align-items:center;
+    position:relative;
+    z-index:2;
+  }
+  .eyebrow{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    background:var(--card);
+    border:1px solid var(--line);
+    padding:8px 16px;
+    border-radius:999px;
+    font-size:13px;
+    font-weight:700;
+    color:var(--accent);
+    margin-bottom:24px;
+  }
+  .eyebrow::before{
+    content:"";
+    width:8px;height:8px;border-radius:50%;
+    background:var(--accent);
+    box-shadow:0 0 12px var(--accent);
+  }
+  h1{
+    font-size:clamp(40px, 6vw, 68px);
+    font-weight:900;
+    line-height:1.08;
+    letter-spacing:-1px;
+    margin-bottom:20px;
+  }
+  h1 .accent{color:var(--accent);}
+  .hero p.lead{
+    font-size:19px;
+    color:var(--muted);
+    max-width:520px;
+    margin-bottom:32px;
+  }
+  .hero-actions{display:flex;gap:16px;flex-wrap:wrap;margin-bottom:48px;}
+  .hero-stats{
+    display:flex;
+    gap:40px;
+    flex-wrap:wrap;
+  }
+  .stat b{
+    display:block;
+    font-size:32px;
+    font-weight:900;
+    color:var(--text);
+  }
+  .stat span{
+    font-size:14px;
+    color:var(--muted);
+  }
+  .hero-visual{
+    position:relative;
+    aspect-ratio:4/5;
+    border-radius:28px;
+    background:
+      linear-gradient(160deg, var(--bg-soft), #0b0b0d 70%);
+    border:1px solid var(--line);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    overflow:hidden;
+  }
+  .hero-visual .glow{
+    position:absolute;
+    width:280px;height:280px;
+    background:radial-gradient(circle, rgba(215,255,63,.35), transparent 70%);
+    filter:blur(10px);
+  }
+  .avatar-ring{
+    width:220px;height:220px;
+    border-radius:50%;
+    background:linear-gradient(135deg, var(--accent), var(--accent-2));
+    display:flex;align-items:center;justify-content:center;
+    font-size:72px;font-weight:900;color:#0b0b0d;
+    position:relative;z-index:2;
+    box-shadow:0 0 60px rgba(215,255,63,.3);
+  }
+  .hero-badge{
+    position:absolute;
+    bottom:24px;
+    left:24px;
+    right:24px;
+    background:rgba(20,20,23,.85);
+    border:1px solid var(--line);
+    backdrop-filter:blur(6px);
+    border-radius:16px;
+    padding:16px 18px;
+    display:flex;
+    align-items:center;
+    gap:12px;
+    font-size:14px;
+    z-index:3;
+  }
+  .hero-badge b{color:var(--accent);}
+
+  section{padding:110px 0;}
+  .section-head{
+    text-align:center;
+    max-width:640px;
+    margin:0 auto 60px;
+  }
+  .section-head .eyebrow{margin-bottom:16px;}
+  .section-head h2{
+    font-size:clamp(30px,4vw,44px);
+    font-weight:900;
+    margin-bottom:14px;
+    letter-spacing:-.5px;
+  }
+  .section-head p{color:var(--muted);font-size:17px;}
+
+  /* About */
+  .about{background:var(--bg-soft);}
+  .about-grid{
+    display:grid;
+    grid-template-columns:.85fr 1.15fr;
+    gap:60px;
+    align-items:center;
+  }
+  .about-photo{
+    aspect-ratio:1/1;
+    border-radius:24px;
+    background:linear-gradient(150deg, var(--card), #0b0b0d);
+    border:1px solid var(--line);
+    display:flex;align-items:center;justify-content:center;
+    font-size:110px;font-weight:900;
+    color:var(--accent);
+  }
+  .about h2{
+    font-size:34px;font-weight:900;margin-bottom:18px;
+  }
+  .about p{color:var(--muted);margin-bottom:16px;font-size:16px;}
+  .badges{
+    display:flex;flex-wrap:wrap;gap:12px;margin-top:24px;
+  }
+  .badge{
+    background:var(--card);
+    border:1px solid var(--line);
+    padding:10px 16px;
+    border-radius:12px;
+    font-size:14px;
+    font-weight:700;
+    display:flex;align-items:center;gap:8px;
+  }
+  .badge::before{content:"✓";color:var(--accent);font-weight:900;}
+
+  /* Services */
+  .services-grid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:24px;
+  }
+  .service-card{
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:20px;
+    padding:32px 26px;
+    transition:transform .2s ease, border-color .2s ease;
+  }
+  .service-card:hover{
+    transform:translateY(-6px);
+    border-color:var(--accent);
+  }
+  .service-icon{
+    width:52px;height:52px;
+    border-radius:14px;
+    background:linear-gradient(135deg, var(--accent), var(--accent-2));
+    display:flex;align-items:center;justify-content:center;
+    margin-bottom:20px;
+  }
+  .service-icon svg{width:26px;height:26px;stroke:#0b0b0d;}
+  .service-card h3{font-size:19px;font-weight:800;margin-bottom:10px;}
+  .service-card p{color:var(--muted);font-size:14.5px;}
+
+  /* Testimonials */
+  .testimonials{background:var(--bg-soft);}
+  .testi-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:24px;
+  }
+  .testi-card{
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:20px;
+    padding:28px;
+  }
+  .stars{color:var(--accent);font-size:16px;margin-bottom:14px;letter-spacing:2px;}
+  .testi-card p.quote{color:var(--text);font-size:15.5px;margin-bottom:20px;}
+  .testi-person{display:flex;align-items:center;gap:12px;}
+  .testi-avatar{
+    width:42px;height:42px;border-radius:50%;
+    background:linear-gradient(135deg, var(--accent-2), var(--accent));
+    display:flex;align-items:center;justify-content:center;
+    font-weight:800;color:#0b0b0d;font-size:15px;
+  }
+  .testi-person b{display:block;font-size:14.5px;}
+  .testi-person span{color:var(--muted);font-size:13px;}
+
+  /* Contact */
+  .contact-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:50px;
+    align-items:start;
+  }
+  .contact-info .item{
+    display:flex;
+    gap:16px;
+    align-items:flex-start;
+    margin-bottom:26px;
+  }
+  .contact-info .icon{
+    width:46px;height:46px;
+    border-radius:12px;
+    background:var(--card);
+    border:1px solid var(--line);
+    display:flex;align-items:center;justify-content:center;
+    flex-shrink:0;
+  }
+  .contact-info .icon svg{width:20px;height:20px;stroke:var(--accent);}
+  .contact-info h4{font-size:15px;margin-bottom:4px;}
+  .contact-info p, .contact-info a{color:var(--muted);font-size:14.5px;}
+  .social-row{display:flex;gap:12px;margin-top:20px;}
+  .social-row a{
+    width:44px;height:44px;
+    border-radius:12px;
+    background:var(--card);
+    border:1px solid var(--line);
+    display:flex;align-items:center;justify-content:center;
+    transition:border-color .15s ease, transform .15s ease;
+  }
+  .social-row a:hover{border-color:var(--accent);transform:translateY(-3px);}
+  .social-row svg{width:19px;height:19px;stroke:var(--text);}
+
+  form{
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:20px;
+    padding:32px;
+    display:grid;
+    gap:16px;
+  }
+  form label{font-size:13px;font-weight:700;color:var(--muted);margin-bottom:6px;display:block;}
+  form input, form textarea{
+    width:100%;
+    background:var(--bg);
+    border:1px solid var(--line);
+    border-radius:12px;
+    padding:13px 14px;
+    color:var(--text);
+    font-family:inherit;
+    font-size:14.5px;
+  }
+  form input:focus, form textarea:focus{outline:none;border-color:var(--accent);}
+  form textarea{resize:vertical;min-height:100px;}
+  form .btn{justify-self:start;width:100%;justify-content:center;}
+
+  footer{
+    border-top:1px solid var(--line);
+    padding:36px 0;
+    text-align:center;
+    color:var(--muted);
+    font-size:13.5px;
+  }
+  footer .logo{display:inline-block;margin-bottom:10px;}
+
+  .whatsapp-float{
+    position:fixed;
+    bottom:26px;
+    left:26px;
+    z-index:200;
+    width:60px;height:60px;
+    border-radius:50%;
+    background:#25D366;
+    display:flex;align-items:center;justify-content:center;
+    box-shadow:0 8px 24px rgba(37,211,102,.4);
+    transition:transform .2s ease;
+  }
+  .whatsapp-float:hover{transform:scale(1.08);}
+  .whatsapp-float svg{width:30px;height:30px;fill:#fff;}
+
+  @media (max-width:900px){
+    .nav-links{display:none;}
+    .burger{display:flex;}
+    .hero-grid,.about-grid,.contact-grid{grid-template-columns:1fr;}
+    .hero-visual{margin-top:40px;max-width:340px;margin-inline:auto;}
+    .services-grid{grid-template-columns:repeat(2,1fr);}
+    .testi-grid{grid-template-columns:1fr;}
+    section{padding:70px 0;}
+  }
+  @media (max-width:480px){
+    .services-grid{grid-template-columns:1fr;}
+    .hero-stats{gap:24px;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <nav class="nav container">
+    <div class="logo">שלמה <span>| מאמן כושר</span></div>
+    <ul class="nav-links">
+      <li><a href="#about">אודות</a></li>
+      <li><a href="#services">שירותים</a></li>
+      <li><a href="#testimonials">המלצות</a></li>
+      <li><a href="#contact">צור קשר</a></li>
+    </ul>
+    <div class="nav-cta">
+      <a href="#contact" class="btn btn-primary">קביעת אימון ניסיון</a>
+    </div>
+    <button class="burger" id="burger" aria-label="תפריט">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+</header>
+
+<section class="hero">
+  <div class="container hero-grid">
+    <div>
+      <div class="eyebrow">מאמן כושר מוסמך · אימון אישי וקבוצתי</div>
+      <h1>תבנה גוף חזק,<br>עם <span class="accent">שלמה</span> לצידך.</h1>
+      <p class="lead">
+        ליווי אישי, תוכניות אימון מותאמות ותזונה נכונה — כדי שתגיע לתוצאות
+        אמיתיות ותשמור עליהן לאורך זמן.
+      </p>
+      <div class="hero-actions">
+        <a href="#contact" class="btn btn-primary">קביעת שיחת ייעוץ חינם</a>
+        <a href="https://wa.me/972500000000" target="_blank" rel="noopener" class="btn btn-outline">שלח הודעת וואטסאפ</a>
+      </div>
+      <div class="hero-stats">
+        <div class="stat"><b>10+</b><span>שנות ניסיון</span></div>
+        <div class="stat"><b>300+</b><span>מתאמנים מרוצים</span></div>
+        <div class="stat"><b>4.9★</b><span>דירוג ממוצע</span></div>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="glow"></div>
+      <div class="avatar-ring">ש</div>
+      <div class="hero-badge">
+        <span>💪</span>
+        <div><b>אימון הבא פנוי:</b> היום, 18:00</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="about" id="about">
+  <div class="container about-grid">
+    <div class="about-photo">ש</div>
+    <div>
+      <div class="eyebrow">מי אני</div>
+      <h2>שלמה מאמן — כושר זו לא רק תוכנית אימון, זו דרך חיים</h2>
+      <p>
+        אני שלמה, מאמן כושר אישי עם ניסיון של למעלה מעשור בליווי מתאמנים
+        מכל הרמות — ממתחילים ועד ספורטאים תחרותיים. אני מאמין בבניית תוכנית
+        מדויקת אישית, שמתחשבת בזמן, ביכולות וביעדים שלך.
+      </p>
+      <p>
+        המטרה שלי היא לא רק לראות אותך מתקדם באימון, אלא לבנות איתך הרגלים
+        שישרתו אותך לכל החיים.
+      </p>
+      <div class="badges">
+        <div class="badge">מאמן כושר מוסמך</div>
+        <div class="badge">ליווי תזונתי</div>
+        <div class="badge">התאמה אישית מלאה</div>
+        <div class="badge">אימונים אונליין</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="services" id="services">
+  <div class="container">
+    <div class="section-head">
+      <div class="eyebrow">מה אני מציע</div>
+      <h2>שירותי אימון</h2>
+      <p>בין אם אתה מתחיל את הדרך או רוצה לשבור תקרת זכוכית — יש לי תוכנית בשבילך.</p>
+    </div>
+    <div class="services-grid">
+      <div class="service-card">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><path d="M6 7h1v10H6zM17 7h1v10h-1zM3 10h2v4H3zM19 10h2v4h-2zM8 12h8"/></svg>
+        </div>
+        <h3>אימון אישי</h3>
+        <p>תוכנית אימונים אחד על אחד, מותאמת ליעדים, לזמינות וליכולת הגופנית שלך.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><circle cx="9" cy="8" r="3"/><circle cx="17" cy="10" r="2.5"/><path d="M3 19c0-3 3-5 6-5s6 2 6 5"/></svg>
+        </div>
+        <h3>אימוני קבוצה</h3>
+        <p>אימונים דינמיים בקבוצות קטנות — אנרגיה, מוטיבציה ותוצאות ביחד.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><path d="M12 3c3 3 3 7 0 10-3-3-3-7 0-10zM12 13v8M8 21h8"/></svg>
+        </div>
+        <h3>ליווי תזונתי</h3>
+        <p>בניית תפריט מותאם אישית שתומך במטרות שלך — בלי דיאטות קיצון.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><rect x="3" y="4" width="18" height="14" rx="2"/><path d="M8 21h8M12 18v3"/></svg>
+        </div>
+        <h3>אימון אונליין</h3>
+        <p>ליווי מרחוק עם תוכנית שבועית, מעקב התקדמות ותמיכה שוטפת בוואטסאפ.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="testimonials" id="testimonials">
+  <div class="container">
+    <div class="section-head">
+      <div class="eyebrow">לקוחות מספרים</div>
+      <h2>מה אומרים עליי המתאמנים</h2>
+    </div>
+    <div class="testi-grid">
+      <div class="testi-card">
+        <div class="stars">★★★★★</div>
+        <p class="quote">"ירדתי 12 קילו תוך 4 חודשים והכי חשוב — שמרתי על זה. שלמה יודע לבנות תוכנית שמתאימה לחיים האמיתיים שלך."</p>
+        <div class="testi-person">
+          <div class="testi-avatar">מ</div>
+          <div><b>מיכל כהן</b><span>מתאמנת אישית, 8 חודשים</span></div>
+        </div>
+      </div>
+      <div class="testi-card">
+        <div class="stars">★★★★★</div>
+        <p class="quote">"אחרי שנים שלא התאמנתי, שלמה החזיר אותי לכושר בהדרגה ובלי פציעות. ליווי מקצועי וסבלני."</p>
+        <div class="testi-person">
+          <div class="testi-avatar">ד</div>
+          <div><b>דני לוי</b><span>מתאמן קבוצתי, שנה</span></div>
+        </div>
+      </div>
+      <div class="testi-card">
+        <div class="stars">★★★★★</div>
+        <p class="quote">"האימונים האונליין נוחים ומדויקים בדיוק כמו במפגש פרונטלי. ממליצה בחום לכל מי שהזמן שלו קצר."</p>
+        <div class="testi-person">
+          <div class="testi-avatar">ר</div>
+          <div><b>רותם אברהם</b><span>אימון אונליין, 5 חודשים</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="contact" id="contact">
+  <div class="container">
+    <div class="section-head">
+      <div class="eyebrow">בואו נתחיל</div>
+      <h2>מוכנים להתחיל?</h2>
+      <p>השאירו פרטים או צרו קשר ישירות — אחזור אליכם תוך יום עסקים.</p>
+    </div>
+    <div class="contact-grid">
+      <div class="contact-info">
+        <div class="item">
+          <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.11 4.18 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.9.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div>
+          <div><h4>טלפון</h4><a href="tel:+972500000000">050-000-0000</a></div>
+        </div>
+        <div class="item">
+          <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><path d="M4 4h16v16H4z" fill="none"/><path d="M22 6l-10 7L2 6"/></svg></div>
+          <div><h4>אימייל</h4><a href="mailto:shlomo@example.com">shlomo@example.com</a></div>
+        </div>
+        <div class="item">
+          <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><path d="M21 10c0 6-9 12-9 12s-9-6-9-12a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+          <div><h4>איזור פעילות</h4><p>סטודיו פרטי, תל אביב — וגם אונליין בכל הארץ</p></div>
+        </div>
+        <div class="social-row">
+          <a href="#" target="_blank" rel="noopener" aria-label="אינסטגרם">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg>
+          </a>
+          <a href="#" target="_blank" rel="noopener" aria-label="פייסבוק">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M14 9h3V6h-3a4 4 0 0 0-4 4v2H7v3h3v6h3v-6h3l1-3h-4v-2a1 1 0 0 1 1-1z"/></svg>
+          </a>
+          <a href="https://wa.me/972500000000" target="_blank" rel="noopener" aria-label="וואטסאפ">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+          </a>
+        </div>
+      </div>
+      <form onsubmit="return handleSubmit(event)">
+        <div>
+          <label for="name">שם מלא</label>
+          <input id="name" name="name" type="text" placeholder="ישראל ישראלי" required>
+        </div>
+        <div>
+          <label for="phone">טלפון</label>
+          <input id="phone" name="phone" type="tel" placeholder="050-1234567" required>
+        </div>
+        <div>
+          <label for="msg">קצת עליך ועל היעדים שלך</label>
+          <textarea id="msg" name="msg" placeholder="למשל: רוצה לרדת במשקל, להתחיל להתאמן בפעם הראשונה..."></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">שליחה</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="logo">שלמה <span style="color:var(--accent)">| מאמן כושר</span></div>
+    <p>© <span id="year"></span> כל הזכויות שמורות לשלמה מאמן כושר.</p>
+  </div>
+</footer>
+
+<a class="whatsapp-float" href="https://wa.me/972500000000" target="_blank" rel="noopener" aria-label="וואטסאפ">
+  <svg viewBox="0 0 24 24"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.79.47 3.47 1.29 4.93L2 22l5.29-1.39a9.87 9.87 0 0 0 4.75 1.21h.01c5.46 0 9.91-4.45 9.91-9.91C21.96 6.45 17.5 2 12.04 2zm5.8 14.02c-.24.68-1.4 1.3-1.94 1.38-.5.08-1.12.11-1.81-.11-.42-.13-.95-.3-1.64-.6-2.88-1.25-4.76-4.14-4.9-4.33-.14-.19-1.17-1.56-1.17-2.98 0-1.42.74-2.11 1-2.4.26-.29.57-.36.76-.36.19 0 .38 0 .55.01.17.01.42-.07.65.5.24.58.83 2 .9 2.15.07.15.12.33.02.52-.1.19-.15.31-.29.48-.15.17-.31.38-.44.51-.15.15-.3.31-.13.6.17.29.76 1.25 1.63 2.02 1.12 1 2.06 1.31 2.35 1.46.29.15.46.13.63-.08.17-.21.72-.84.91-1.13.19-.29.38-.24.63-.14.26.1 1.65.78 1.93.92.29.14.48.21.55.33.07.12.07.68-.17 1.36z"/></svg>
+</a>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  document.getElementById('burger').addEventListener('click', function(){
+    const links = document.querySelector('.nav-links');
+    const shown = links.style.display === 'flex';
+    links.style.display = shown ? 'none' : 'flex';
+    links.style.flexDirection = 'column';
+    links.style.position = 'fixed';
+    links.style.top = '76px';
+    links.style.right = '0';
+    links.style.left = '0';
+    links.style.background = '#141417';
+    links.style.padding = '20px 24px';
+    links.style.borderBottom = '1px solid #2a2a2e';
+  });
+
+  document.querySelectorAll('.nav-links a').forEach(a=>{
+    a.addEventListener('click', ()=>{
+      if(window.innerWidth <= 900){
+        document.querySelector('.nav-links').style.display='none';
+      }
+    });
+  });
+
+  function handleSubmit(e){
+    e.preventDefault();
+    const name = document.getElementById('name').value;
+    const phone = document.getElementById('phone').value;
+    const msg = document.getElementById('msg').value;
+    const text = encodeURIComponent(`היי שלמה, שמי ${name} (טלפון: ${phone}). ${msg}`);
+    window.open(`https://wa.me/972500000000?text=${text}`, '_blank');
+    return false;
+  }
+</script>
+
+</body>
+</html>
