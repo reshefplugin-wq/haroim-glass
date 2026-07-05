@@ -7,14 +7,15 @@
 <meta name="description" content="שלמה - מאמן כושר אישי. אימונים אישיים, אימוני קבוצה, ליווי תזונתי ואימונים אונליין.">
 <style>
   :root{
-    --bg:#0b0b0d;
-    --bg-soft:#141417;
-    --card:#1a1a1e;
-    --line:#2a2a2e;
-    --text:#f4f4f2;
-    --muted:#a6a6ad;
-    --accent:#d7ff3f;
-    --accent-2:#ff5722;
+    --bg:#ffffff;
+    --bg-soft:#f5f6f8;
+    --card:#ffffff;
+    --line:#e5e7eb;
+    --text:#14151a;
+    --muted:#6b7280;
+    --accent:#a3e635;
+    --accent-dark:#3f6212;
+    --accent-2:#f97316;
   }
   *{margin:0;padding:0;box-sizing:border-box;}
   html{scroll-behavior:smooth;}
@@ -50,16 +51,16 @@
   .btn:hover{transform:translateY(-2px);}
   .btn-primary{
     background:var(--accent);
-    color:#0b0b0d;
-    box-shadow:0 6px 20px rgba(215,255,63,.25);
+    color:#14151a;
+    box-shadow:0 6px 20px rgba(163,230,53,.35), 0 2px 8px rgba(20,21,26,.06);
   }
-  .btn-primary:hover{box-shadow:0 10px 26px rgba(215,255,63,.4);}
+  .btn-primary:hover{box-shadow:0 10px 26px rgba(163,230,53,.5), 0 4px 10px rgba(20,21,26,.08);}
   .btn-outline{
     background:transparent;
     color:var(--text);
     border-color:var(--line);
   }
-  .btn-outline:hover{border-color:var(--accent);}
+  .btn-outline:hover{border-color:var(--accent-dark);}
 
   /* Header */
   header{
@@ -67,7 +68,7 @@
     top:0;left:0;right:0;
     z-index:100;
     backdrop-filter:blur(10px);
-    background:rgba(11,11,13,.75);
+    background:rgba(255,255,255,.78);
     border-bottom:1px solid var(--line);
   }
   .nav{
@@ -81,7 +82,7 @@
     font-weight:800;
     letter-spacing:.5px;
   }
-  .logo span{color:var(--accent);}
+  .logo span{color:var(--accent-dark);}
   .nav-links{
     display:flex;
     gap:32px;
@@ -113,8 +114,8 @@
     align-items:center;
     padding-top:76px;
     background:
-      radial-gradient(circle at 85% 20%, rgba(215,255,63,.12), transparent 45%),
-      radial-gradient(circle at 15% 80%, rgba(255,87,34,.15), transparent 45%),
+      radial-gradient(circle at 85% 20%, rgba(163,230,53,.18), transparent 45%),
+      radial-gradient(circle at 15% 80%, rgba(249,115,22,.14), transparent 45%),
       var(--bg);
     overflow:hidden;
   }
@@ -123,8 +124,8 @@
     position:absolute;
     inset:0;
     background-image:
-      linear-gradient(rgba(255,255,255,.03) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(255,255,255,.03) 1px, transparent 1px);
+      linear-gradient(rgba(20,21,26,.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(20,21,26,.04) 1px, transparent 1px);
     background-size:48px 48px;
     mask-image:radial-gradient(circle at 60% 40%, black, transparent 70%);
     pointer-events:none;
@@ -147,7 +148,7 @@
     border-radius:999px;
     font-size:13px;
     font-weight:700;
-    color:var(--accent);
+    color:var(--accent-dark);
     margin-bottom:24px;
   }
   .eyebrow::before{
@@ -163,7 +164,7 @@
     letter-spacing:-1px;
     margin-bottom:20px;
   }
-  h1 .accent{color:var(--accent);}
+  h1 .accent{color:var(--accent-dark);}
   .hero p.lead{
     font-size:19px;
     color:var(--muted);
@@ -191,17 +192,18 @@
     aspect-ratio:4/5;
     border-radius:28px;
     background:
-      linear-gradient(160deg, var(--bg-soft), #0b0b0d 70%);
+      linear-gradient(160deg, var(--bg-soft), #ffffff 70%);
     border:1px solid var(--line);
     display:flex;
     align-items:center;
     justify-content:center;
     overflow:hidden;
+    box-shadow:0 20px 60px rgba(20,21,26,.06);
   }
   .hero-visual .glow{
     position:absolute;
     width:280px;height:280px;
-    background:radial-gradient(circle, rgba(215,255,63,.35), transparent 70%);
+    background:radial-gradient(circle, rgba(163,230,53,.4), transparent 70%);
     filter:blur(10px);
   }
   .avatar-ring{
@@ -209,16 +211,16 @@
     border-radius:50%;
     background:linear-gradient(135deg, var(--accent), var(--accent-2));
     display:flex;align-items:center;justify-content:center;
-    font-size:72px;font-weight:900;color:#0b0b0d;
+    font-size:72px;font-weight:900;color:#14151a;
     position:relative;z-index:2;
-    box-shadow:0 0 60px rgba(215,255,63,.3);
+    box-shadow:0 0 60px rgba(163,230,53,.35);
   }
   .hero-badge{
     position:absolute;
     bottom:24px;
     left:24px;
     right:24px;
-    background:rgba(20,20,23,.85);
+    background:rgba(255,255,255,.9);
     border:1px solid var(--line);
     backdrop-filter:blur(6px);
     border-radius:16px;
@@ -228,8 +230,9 @@
     gap:12px;
     font-size:14px;
     z-index:3;
+    box-shadow:0 10px 30px rgba(20,21,26,.08);
   }
-  .hero-badge b{color:var(--accent);}
+  .hero-badge b{color:var(--accent-dark);}
 
   section{padding:110px 0;}
   .section-head{
@@ -257,11 +260,12 @@
   .about-photo{
     aspect-ratio:1/1;
     border-radius:24px;
-    background:linear-gradient(150deg, var(--card), #0b0b0d);
+    background:linear-gradient(150deg, #ffffff, var(--bg-soft));
     border:1px solid var(--line);
     display:flex;align-items:center;justify-content:center;
     font-size:110px;font-weight:900;
-    color:var(--accent);
+    color:var(--accent-dark);
+    box-shadow:0 20px 50px rgba(20,21,26,.05);
   }
   .about h2{
     font-size:34px;font-weight:900;margin-bottom:18px;
@@ -279,7 +283,7 @@
     font-weight:700;
     display:flex;align-items:center;gap:8px;
   }
-  .badge::before{content:"✓";color:var(--accent);font-weight:900;}
+  .badge::before{content:"✓";color:var(--accent-dark);font-weight:900;}
 
   /* Services */
   .services-grid{
@@ -292,11 +296,13 @@
     border:1px solid var(--line);
     border-radius:20px;
     padding:32px 26px;
-    transition:transform .2s ease, border-color .2s ease;
+    box-shadow:0 4px 16px rgba(20,21,26,.04);
+    transition:transform .2s ease, border-color .2s ease, box-shadow .2s ease;
   }
   .service-card:hover{
     transform:translateY(-6px);
-    border-color:var(--accent);
+    border-color:var(--accent-dark);
+    box-shadow:0 14px 30px rgba(20,21,26,.08);
   }
   .service-icon{
     width:52px;height:52px;
@@ -305,7 +311,7 @@
     display:flex;align-items:center;justify-content:center;
     margin-bottom:20px;
   }
-  .service-icon svg{width:26px;height:26px;stroke:#0b0b0d;}
+  .service-icon svg{width:26px;height:26px;stroke:#14151a;}
   .service-card h3{font-size:19px;font-weight:800;margin-bottom:10px;}
   .service-card p{color:var(--muted);font-size:14.5px;}
 
@@ -321,15 +327,16 @@
     border:1px solid var(--line);
     border-radius:20px;
     padding:28px;
+    box-shadow:0 4px 16px rgba(20,21,26,.04);
   }
-  .stars{color:var(--accent);font-size:16px;margin-bottom:14px;letter-spacing:2px;}
+  .stars{color:var(--accent-2);font-size:16px;margin-bottom:14px;letter-spacing:2px;}
   .testi-card p.quote{color:var(--text);font-size:15.5px;margin-bottom:20px;}
   .testi-person{display:flex;align-items:center;gap:12px;}
   .testi-avatar{
     width:42px;height:42px;border-radius:50%;
     background:linear-gradient(135deg, var(--accent-2), var(--accent));
     display:flex;align-items:center;justify-content:center;
-    font-weight:800;color:#0b0b0d;font-size:15px;
+    font-weight:800;color:#14151a;font-size:15px;
   }
   .testi-person b{display:block;font-size:14.5px;}
   .testi-person span{color:var(--muted);font-size:13px;}
@@ -355,7 +362,7 @@
     display:flex;align-items:center;justify-content:center;
     flex-shrink:0;
   }
-  .contact-info .icon svg{width:20px;height:20px;stroke:var(--accent);}
+  .contact-info .icon svg{width:20px;height:20px;stroke:var(--accent-dark);}
   .contact-info h4{font-size:15px;margin-bottom:4px;}
   .contact-info p, .contact-info a{color:var(--muted);font-size:14.5px;}
   .social-row{display:flex;gap:12px;margin-top:20px;}
@@ -367,7 +374,7 @@
     display:flex;align-items:center;justify-content:center;
     transition:border-color .15s ease, transform .15s ease;
   }
-  .social-row a:hover{border-color:var(--accent);transform:translateY(-3px);}
+  .social-row a:hover{border-color:var(--accent-dark);transform:translateY(-3px);}
   .social-row svg{width:19px;height:19px;stroke:var(--text);}
 
   form{
@@ -377,11 +384,12 @@
     padding:32px;
     display:grid;
     gap:16px;
+    box-shadow:0 4px 20px rgba(20,21,26,.05);
   }
   form label{font-size:13px;font-weight:700;color:var(--muted);margin-bottom:6px;display:block;}
   form input, form textarea{
     width:100%;
-    background:var(--bg);
+    background:var(--bg-soft);
     border:1px solid var(--line);
     border-radius:12px;
     padding:13px 14px;
@@ -389,7 +397,7 @@
     font-family:inherit;
     font-size:14.5px;
   }
-  form input:focus, form textarea:focus{outline:none;border-color:var(--accent);}
+  form input:focus, form textarea:focus{outline:none;border-color:var(--accent-dark);}
   form textarea{resize:vertical;min-height:100px;}
   form .btn{justify-self:start;width:100%;justify-content:center;}
 
@@ -636,7 +644,7 @@
 
 <footer>
   <div class="container">
-    <div class="logo">שלמה <span style="color:var(--accent)">| מאמן כושר</span></div>
+    <div class="logo">שלמה <span style="color:var(--accent-dark)">| מאמן כושר</span></div>
     <p>© <span id="year"></span> כל הזכויות שמורות לשלמה מאמן כושר.</p>
   </div>
 </footer>
@@ -657,9 +665,10 @@
     links.style.top = '76px';
     links.style.right = '0';
     links.style.left = '0';
-    links.style.background = '#141417';
+    links.style.background = '#ffffff';
     links.style.padding = '20px 24px';
-    links.style.borderBottom = '1px solid #2a2a2e';
+    links.style.borderBottom = '1px solid #e5e7eb';
+    links.style.boxShadow = '0 10px 30px rgba(20,21,26,.08)';
   });
 
   document.querySelectorAll('.nav-links a').forEach(a=>{
