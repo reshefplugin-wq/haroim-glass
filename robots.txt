@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://reshefplugin-wq.github.io/haroim-glass/sitemap.xml
